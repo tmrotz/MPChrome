@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "Master Password Chrome Extension",
+  "description": "This extension uses Master Password algorithm to automatically login",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html",
+    "default_title": "Click here!"
+  },
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ]
+}
