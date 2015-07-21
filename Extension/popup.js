@@ -52,8 +52,7 @@ function extractDomain(url) {
     //find & remove protocol (http, ftp, etc.) and get domain
     if (url.indexOf("://") > -1) {
         domain = url.split('/')[2];
-    }
-    else {
+    } else {
         domain = url.split('/')[0];
     }
 
@@ -63,28 +62,37 @@ function extractDomain(url) {
     return domain;
 }
 
-var PIN     = "pin";
-var SHORT   = "short";
-var BASIC   = "basic";
-var MEDIUM  = "medium";
-var LONG    = "long";
-var MAXIMUM = "maximum";
-var NAME    = "name";
-var PHRASE  = "phrase";
+function generatePassword() {
+  var PIN     = "pin";
+  var SHORT   = "short";
+  var BASIC   = "basic";
+  var MEDIUM  = "medium";
+  var LONG    = "long";
+  var MAXIMUM = "maximum";
+  var NAME    = "name";
+  var PHRASE  = "phrase";
 
-var full_name = "Adam Becker Chillman";
-var master_password = "abcdefghijklmnopqrstuvwxyz";
+  var full_name = "Adam Becker Chillman";
+  var master_password = "abcdefghijklmnopqrstuvwxyz";
 
-var mpw = new MPW( full_name, master_password );
+  var mpw = new MPW( full_name, master_password );
 
-getCurrentTabUrl(function(url) {
+  getCurrentTabUrl(function(url) {
 
-  var domain = extractDomain(url);
+    var domain = extractDomain(url);
 
-  mpw.generatePassword( domain, 1, LONG )
-    .then( function (sitePassword) {
-      console.log("Password: " + sitePassword);
-    }, function (reason) {
-      console.log("Something went wrong... " + reason);
-    });
-});
+    mpw.generatePassword( domain, 1, LONG )
+      .then( function (sitePassword) {
+        console.log("Password: " + sitePassword);
+      }, function (reason) {
+        console.log("Something went wrong... " + reason);
+      });
+  });
+}
+
+window.onload = function () {
+  var moo = document.getElementById("asdf");
+  moo.addEventListener("click", function() {
+    generatePassword();
+  }, false);
+};
