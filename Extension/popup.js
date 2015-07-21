@@ -62,15 +62,7 @@ function extractDomain(url) {
     return domain;
 }
 
-function generatePassword() {
-  var PIN     = "pin";
-  var SHORT   = "short";
-  var BASIC   = "basic";
-  var MEDIUM  = "medium";
-  var LONG    = "long";
-  var MAXIMUM = "maximum";
-  var NAME    = "name";
-  var PHRASE  = "phrase";
+function generatePassword(template) {
 
   var full_name = "Adam Becker Chillman";
   var master_password = "abcdefghijklmnopqrstuvwxyz";
@@ -81,7 +73,7 @@ function generatePassword() {
 
     var domain = extractDomain(url);
 
-    mpw.generatePassword( domain, 1, LONG )
+    mpw.generatePassword( domain, 1, template )
       .then( function (sitePassword) {
         console.log("Password: " + sitePassword);
       }, function (reason) {
@@ -90,9 +82,29 @@ function generatePassword() {
   });
 }
 
+var PIN     = "pin";
+var SHORT   = "short";
+var BASIC   = "basic";
+var MEDIUM  = "medium";
+var LONG    = "long";
+var MAXIMUM = "maximum";
+var NAME    = "name";
+var PHRASE  = "phrase";
+
+var templates = {
+  PIN,
+  SHORT,
+  BASIC,
+  MEDIUM,
+  LONG,
+  MAXIMUM,
+  NAME,
+  PHRASE
+}
+
 window.onload = function () {
   var moo = document.getElementById("asdf");
   moo.addEventListener("click", function() {
-    generatePassword();
+    generatePassword(LONG);
   }, false);
 };
