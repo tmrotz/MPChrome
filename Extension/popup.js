@@ -47,8 +47,34 @@ function getCurrentTabUrl(callback) {
   // alert(url); // Shows "undefined", because chrome.tabs.query is async.
 }
 
-getCurrentTabUrl(function(url) {
-  alert(url);
-});
+var PIN     = "pin";
+var SHORT   = "short";
+var BASIC   = "basic";
+var MEDIUM  = "medium";
+var LONG    = "long";
+var MAXIMUM = "maximum";
+var NAME    = "name";
+var PHRASE  = "phrase";
+
+var full_name = "Adam Becker Chillman";
+var master_password = "abcdefghijklmnopqrstuvwxyz";
+
+var mpw = new MPW( full_name, master_password );
+var domain = "google.com";
+
+mpw.generatePassword( domain, 1, LONG )
+  .then( function (sitePassword) {
+    console.log("Password: " + sitePassword);
+  }, function (reason) {
+    console.log("Something went wrong... " + reason);
+  });
+
+// getCurrentTabUrl(function(url) {
+
+//   var matches = url.match(/^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i);
+
+
+
+// });
 
 //javascript:function E(){ f0=document.forms[0];f0['userName'].value='yourusername'; f0['password'].value='yourpassword'; f0['login button ID'].click(); }E()
