@@ -47,6 +47,22 @@ function getCurrentTabUrl(callback) {
   // alert(url); // Shows "undefined", because chrome.tabs.query is async.
 }
 
+function extractDomain(url) {
+    var domain;
+    //find & remove protocol (http, ftp, etc.) and get domain
+    if (url.indexOf("://") > -1) {
+        domain = url.split('/')[2];
+    }
+    else {
+        domain = url.split('/')[0];
+    }
+
+    //find & remove port number
+    domain = domain.split(':')[0];
+
+    return domain;
+}
+
 var PIN     = "pin";
 var SHORT   = "short";
 var BASIC   = "basic";
@@ -60,21 +76,15 @@ var full_name = "Adam Becker Chillman";
 var master_password = "abcdefghijklmnopqrstuvwxyz";
 
 var mpw = new MPW( full_name, master_password );
-var domain = "google.com";
 
-mpw.generatePassword( domain, 1, LONG )
-  .then( function (sitePassword) {
-    console.log("Password: " + sitePassword);
-  }, function (reason) {
-    console.log("Something went wrong... " + reason);
-  });
+getCurrentTabUrl(function(url) {
 
-// getCurrentTabUrl(function(url) {
+  var domain = extractDomain(url);
 
-//   var matches = url.match(/^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i);
-
-
-
-// });
-
-//javascript:function E(){ f0=document.forms[0];f0['userName'].value='yourusername'; f0['password'].value='yourpassword'; f0['login button ID'].click(); }E()
+  mpw.generatePassword( domain, 1, LONG )
+    .then( function (sitePassword) {
+      console.log("Password: " + sitePassword);
+    }, function (reason) {
+      console.log("Something went wrong... " + reason);
+    });
+});
