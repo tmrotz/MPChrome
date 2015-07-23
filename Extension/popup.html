@@ -1,26 +1,7 @@
 <!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
 <html>
   <head>
-    <title>Getting Started Extension's Popup</title>
-    <style>
-      body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-      }
-    </style>
-
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-     -->
-
+    <title>Master Password</title>
     <script src="js/vendor/jquery-2.1.1.js"></script>
     <script src="js/dependencies.js?3"></script>
     <script src="popup.js"></script>
@@ -28,7 +9,7 @@
   <body>
     <form action="#">
       <p>
-        <input id="asdf" type="submit" value="Submit">
+        <input id="generate_password" type="submit" value="Submit">
       </p>
     </form>
   </body>
